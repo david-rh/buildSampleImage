@@ -1,5 +1,5 @@
 FROM registry.access.redhat.com/ubi7/ubi
-# USER root
+USER root
 LABEL maintainer="David Anderson"
 # Update image
 RUN yum update --disableplugin=subscription-manager -y && rm -rf /var/cache/yum
@@ -9,5 +9,6 @@ RUN sed 'sed /Listen 80/ s/$/80/' /etc/httpd/conf/httpd.conf
 RUN echo "The Web Server is Running" > /var/www/html/index.html
 EXPOSE 8080
 # Start the service
+USER default
 CMD ["-D", "FOREGROUND"]
 ENTRYPOINT ["/usr/sbin/httpd"]
