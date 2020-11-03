@@ -10,6 +10,8 @@ RUN chgrp -R root /var/run/httpd
 RUN chmod -R g+rw /var/run/httpd
 RUN chgrp -R root /var/log/httpd
 RUN chmod -R g+rw /var/log/httpd
+RUN chmod g+x /var/log/httpd
+
 # Add default Web page and expose port
 RUN echo "The Web Server is Running!!!" > /var/www/html/index.html
 EXPOSE 8080
