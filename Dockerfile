@@ -7,7 +7,9 @@ RUN yum install --disableplugin=subscription-manager httpd -y && rm -rf /var/cac
 RUN sed -i 's/^Listen 80/Listen 8080/' /etc/httpd/conf/httpd.conf
 RUN sed -i 's/^#ServerName.*/ServerName localhost:8080/' /etc/httpd/conf/httpd.conf
 RUN chgrp -R root /var/run/httpd
-RUN chmod -R g+r /var/run/httpd
+RUN chmod -R g+rw /var/run/httpd
+RUN chgrp -R root /etc/httpd
+RUN chmod -R g+rw /etc/httpd
 # Add default Web page and expose port
 RUN echo "The Web Server is Running!!!" > /var/www/html/index.html
 EXPOSE 8080
